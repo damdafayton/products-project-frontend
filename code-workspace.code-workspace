@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "..\\..\\..\\wamp64\\www\\test-scandiweb-products"
+	}
+],
+  "settings": {
+    "eslint.alwaysShowStatus": true,
+    "files.autoSave": "onFocusChange"
+  }
+}

@@ -1,0 +1,35 @@
+:root {
+  // --df-primary: #{$primary};
+  // --df-secondary: #{$light};
+}
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+h1 {
+  font-size: 1rem;
+}
+
+.btn-clean {
+  border: none;
+  background: none;
+  padding: 0 !important;
+}
+
+.z-index-1000 {
+  z-index: 1000;
+}
+
+.z-index-1100 {
+  z-index: 1100;
+}
+
+.h-2rem {
+  height: 2rem;
+}
