@@ -2,9 +2,9 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function (app) {
   app.use(
-    '/api/products',
+    '/api',
     createProxyMiddleware({
-      target: 'http://localhost/test-scandiweb-products/index.php/products',
+      target: 'http://localhost/test-scandiweb-products/index.php',
       changeOrigin: true,
     })
   );
