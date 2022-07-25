@@ -107,8 +107,8 @@ export default function ProductNew({ setAlert }) {
             </Button>
           </div>
         </header>
-        <main>
-          <div className="d-flex flex-column col-md-6 col-lg-4 py-2">
+        <main className="d-flex flex-column align-items-center">
+          <div className="d-flex flex-column col-12 col-sm-6 col-lg-4 py-2">
             {commonFields &&
               commonFields.map((field) => (
                 <TextField
@@ -117,6 +117,8 @@ export default function ProductNew({ setAlert }) {
                   label={field}
                   variant="filled"
                   className="mb-2"
+                  minRows="3"
+                  multiline={field.toLowerCase() === 'description'}
                 />
               ))}
             {categoryList && (
