@@ -1,18 +1,34 @@
 const capitalizeInitial = (word) => word[0].toUpperCase() + word.substr(1);
 
 const capitalizeAcronyms = (word) => {
-  const acronymList = ['sku'];
-  return acronymList.includes(word) ? word.toUpperCase() : word;
+  const acronymList = ['sku', 'dvd'];
+  return acronymList.includes(word)
+    ? word.toUpperCase()
+    : capitalizeInitial(word);
 };
 
-const tableNameToModelName = (_word) => {
-  const word = capitalizeInitial(_word);
-  return word.substring(0, word.length - 1);
+const tableNameToSingular = (_word) => {
+  const word = _word.substring(0, _word.length - 1);
+  return capitalizeAcronyms(word);
+};
+
+const replaceLastCommaWithAnd = (string) => {
+  const matches = [...string.matchAll(',')];
+  if (matches.length >= 2) {
+    const lastComma = matches[matches.length - 1].index;
+    const newString = `${string.substring(0, lastComma)} and${string.substring(
+      lastComma + 1
+    )}`;
+    console.log(newString);
+    return newString;
+  }
+  return string;
 };
 
 // eslint-disable-next-line import/prefer-default-export
 export const utils = {
   capitalizeInitial,
   capitalizeAcronyms,
-  tableNameToModelName,
+  tableNameToSingular,
+  replaceLastCommaWithAnd,
 };

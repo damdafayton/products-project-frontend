@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import {
+  Alert,
   Button,
   TextField,
   Select,
@@ -28,10 +29,9 @@ export default function ProductNew({ setAlert }) {
         const { commonFields, categoryList } = res;
         // console.log(commonFields);
         // eslint-disable-next-line no-underscore-dangle
-        const _commonFields = commonFields.map((_word) => {
-          const word = utils.capitalizeAcronyms(_word);
-          return utils.capitalizeInitial(word);
-        });
+        const _commonFields = commonFields.map((word) =>
+          utils.capitalizeAcronyms(word)
+        );
         setCommonFields(_commonFields);
 
         setCategoryList(categoryList);
@@ -47,7 +47,7 @@ export default function ProductNew({ setAlert }) {
           const { categoryFields } = res;
           // eslint-disable-next-line no-underscore-dangle
           const _categoryFields = categoryFields.map((fieldGroup) => [
-            utils.capitalizeInitial(fieldGroup[0]),
+            utils.capitalizeAcronyms(fieldGroup[0]),
             fieldGroup[1].toUpperCase(),
           ]);
           setCategoryFields(_categoryFields);
@@ -136,24 +136,34 @@ export default function ProductNew({ setAlert }) {
                 >
                   {categoryList.map((category) => (
                     <MenuItem key={category} name="category2" value={category}>
-                      {utils.tableNameToModelName(category)}
+                      {utils.tableNameToSingular(category)}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
             )}
             {categoryFields && (
-              <div id={utils.tableNameToModelName(category)}>
-                {categoryFields.map((fieldGroup) => (
-                  <TextField
-                    key={fieldGroup[0]}
-                    id={fieldGroup[0].toLowerCase()}
-                    label={`${fieldGroup[0]} (${fieldGroup[1]})`}
-                    variant="filled"
-                    className="mb-2 w-100"
-                  />
-                ))}
-              </div>
+              <>
+                <Alert severity="warning" icon={false} className="mb-2">
+                  Please provide:{' '}
+                  {utils.replaceLastCommaWithAnd(
+                    categoryFields
+                      .map((fieldGroup) => fieldGroup[0].toLowerCase())
+                      .join(', ')
+                  )}
+                </Alert>
+                <div id={utils.tableNameToSingular(category)}>
+                  {categoryFields.map((fieldGroup) => (
+                    <TextField
+                      key={fieldGroup[0]}
+                      id={fieldGroup[0].toLowerCase()}
+                      label={`${fieldGroup[0]} (${fieldGroup[1]})`}
+                      variant="filled"
+                      className="mb-2 w-100"
+                    />
+                  ))}
+                </div>
+              </>
             )}
           </div>
         </main>
