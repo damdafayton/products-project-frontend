@@ -95,9 +95,11 @@ export default function ProductNew({ setAlert }) {
   return (
     <>
       <form id="#product_form" onSubmit={formSubmitHandler}>
-        <header className="d-flex justify-content-between border-2 border-bottom border-dark py-2">
-          <h2 className="text-dark">PRODUCT ADD</h2>
-          <div className="d-flex gap-2">
+        <header className="d-flex justify-content-between flex-column flex-sm-row border-2 border-bottom border-dark py-2">
+          <h2 className="text-dark text-center text-sm-start w-100 mb-2 flex-grow-0">
+            PRODUCT ADD
+          </h2>
+          <div className="d-flex gap-2 w-100 justify-content-end">
             <Button variant="outlined" type="submit">
               {/* <Link to="/new_product">Add</Link> */}
               Save

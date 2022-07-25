@@ -1,5 +1,7 @@
 # Products Listing APP
 
+![screen-shot](./products_demo.gif)
+
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Built With

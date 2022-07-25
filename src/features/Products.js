@@ -67,12 +67,16 @@ export default function Products({ setAlert }) {
 
   return (
     <>
-      <header className="d-flex justify-content-between border-2 border-bottom border-dark py-2">
-        <h2 className="text-dark">PRODUCT LIST</h2>
-        <div className="d-flex gap-2">
-          <Button variant="outlined">
-            <Link to="/new_product">Add</Link>
-          </Button>
+      <header className="d-flex justify-content-between flex-column flex-sm-row border-2 border-bottom border-dark py-2">
+        <h2 className="text-dark text-center text-sm-start w-100 mb-2 flex-grow-0">
+          PRODUCT LIST
+        </h2>
+        <div className="d-flex gap-2 w-100 justify-content-end">
+          <Link to="/new_product">
+            <Button variant="outlined" className="h-100">
+              Add
+            </Button>
+          </Link>
           <Button onClick={handleDeleteButton} variant="outlined">
             Mass Delete
           </Button>
