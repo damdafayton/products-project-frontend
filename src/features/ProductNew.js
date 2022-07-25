@@ -12,13 +12,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 import apiRoutes from '../apiRoutes';
-import { utils } from '../helpers/utils';
+import { utils, product } from '../helpers';
 
 export default function ProductNew({ setAlert }) {
-  const [commonFields, setCommonFields] = useState(undefined);
+  const [commonFields, setCommonFields] = useState([]);
   const [categoryList, setCategoryList] = useState(undefined);
   const [category, setCategory] = useState('');
-  const [categoryFields, setCategoryFields] = useState(undefined);
+  const [categoryFields, setCategoryFields] = useState([]);
 
   const navigate = useNavigate();
 
@@ -58,12 +58,43 @@ export default function ProductNew({ setAlert }) {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     const form = e.target;
+
     const body = {};
+    body.category = category;
     Array.from(form.elements).forEach((element) => {
       if (element.value && element.id) body[element.id] = element.value;
     });
-    body.category = category;
-    console.log(body);
+
+    const missingFields = product.validateFormData(body, [
+      ...categoryFields.map((g) => g[0]),
+      ...commonFields,
+      'Category',
+    ]);
+
+    if (missingFields.length > 0) {
+      setAlert({
+        status: 'error',
+        message: `Please submit; ${utils.replaceLastCommaWithAnd(
+          missingFields.join(', ')
+        )}.`,
+      });
+      return;
+    }
+
+    const fieldsSupposedToBeNumeric = product.validateFormDataType(body, [
+      ...categoryFields.map((g) => g[0]),
+      'Price',
+    ]);
+
+    if (fieldsSupposedToBeNumeric.length > 0) {
+      setAlert({
+        status: 'error',
+        message: `${utils.replaceLastCommaWithAnd(
+          fieldsSupposedToBeNumeric.join(', ')
+        )} should be numeric.`,
+      });
+      return;
+    }
 
     fetch(apiRoutes.PRODUCTS, {
       method: 'POST',
@@ -111,7 +142,7 @@ export default function ProductNew({ setAlert }) {
         </header>
         <main className="d-flex flex-column align-items-center">
           <div className="d-flex flex-column col-12 col-sm-6 col-lg-4 py-2">
-            {commonFields &&
+            {commonFields.length > 0 &&
               commonFields.map((field) => (
                 <TextField
                   key={field}
@@ -142,7 +173,7 @@ export default function ProductNew({ setAlert }) {
                 </Select>
               </FormControl>
             )}
-            {categoryFields && (
+            {categoryFields.length > 0 && (
               <>
                 <Alert severity="warning" icon={false} className="mb-2">
                   Please provide:{' '}
@@ -151,6 +182,7 @@ export default function ProductNew({ setAlert }) {
                       .map((fieldGroup) => fieldGroup[0].toLowerCase())
                       .join(', ')
                   )}
+                  .
                 </Alert>
                 <div id={utils.tableNameToSingular(category)}>
                   {categoryFields.map((fieldGroup) => (

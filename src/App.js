@@ -6,6 +6,7 @@ import { Alert } from '@mui/material';
 import Products from './features/Products';
 import ProductNew from './features/ProductNew';
 import './App.css';
+import { utils } from './helpers';
 
 function App() {
   const [alert, setAlert] = useState(undefined);
@@ -20,7 +21,7 @@ function App() {
           onClose={handleAlertClose}
           severity={alert.status}
         >
-          {alert.message}
+          {utils.sterilizeMySQLErrorMessages(alert.message)}
         </Alert>
       )}
       <Routes>
