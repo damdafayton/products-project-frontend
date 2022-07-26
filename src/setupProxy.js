@@ -1,15 +1,14 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const host =
-  process.env.NODE_ENV === 'production'
-    ? 'https://products-listing-demo.herokuapp.com'
-    : 'http://localhost/test-scandiweb-products';
+import { remoteBase, localBase } from './apiRoutes';
+
+const base = process.env.NODE_ENV === 'production' ? remoteBase : localBase;
 
 module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: `${host}/index.php`,
+      target: `${base}/index.php`,
       changeOrigin: true,
     })
   );

@@ -15,7 +15,6 @@ const basename =
 
 root.render(
   <React.StrictMode>
-    <div>basename = {basename}</div>
     <BrowserRouter basename={basename}>
       <App />
     </BrowserRouter>
