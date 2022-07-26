@@ -128,12 +128,8 @@ export default function ProductNew({ setAlert }) {
             PRODUCT ADD
           </h2>
           <div className="d-flex gap-2 w-100 justify-content-end py-2">
-            <Button variant="outlined" type="submit">
-              Save
-            </Button>
-            <Button variant="outlined" onClick={() => navigate(-1)}>
-              Cancel
-            </Button>
+            <Button type="submit">Save</Button>
+            <Button onClick={() => navigate(-1)}>Cancel</Button>
           </div>
         </header>
         <main className="d-flex flex-column align-items-center">

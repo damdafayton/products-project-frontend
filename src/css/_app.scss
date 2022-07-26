@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: Roboto, sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 a {
@@ -46,4 +46,17 @@ p{
 .delete-checkbox{
   left: 0.3rem;
   top: 0.3rem;
+}
+
+// MATERIAL UI
+
+.MuiButtonBase-root.MuiButton-root{
+  background-color: var(--bs-primary);
+  color:white;
+  padding: 0.4rem 1rem;
+
+  &:hover{
+    background-color: var(--bs-primary);
+    filter: opacity(0.7);
+  }
 }

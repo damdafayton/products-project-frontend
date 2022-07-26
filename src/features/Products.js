@@ -67,29 +67,32 @@ export default function Products({ setAlert }) {
 
   return (
     <>
-      <header className="d-flex justify-content-between flex-column flex-sm-row border-2 border-bottom border-dark py-2">
+      <header className="d-flex justify-content-between flex-column flex-sm-row border-2 border-bottom border-light py-2">
         <h2 className="text-dark text-center text-sm-start w-100 my-1 flex-grow-0">
           PRODUCT LIST
         </h2>
         <div className="d-flex gap-2 w-100 justify-content-end py-2">
           <Link to="/new_product">
-            <Button variant="outlined" className="h-100">
+            <Button
+              className="h-100"
+              sx={{
+                color: 'red',
+              }}
+            >
               ADD
             </Button>
           </Link>
-          <Button onClick={handleDeleteButton} variant="outlined">
-            MASS DELETE
-          </Button>
+          <Button onClick={handleDeleteButton}>MASS DELETE</Button>
         </div>
       </header>
       <main className="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 gx-2 py-2">
         {products &&
           products.map((product, idx) => (
             <div className="px-1 py-1" key={product.product_id}>
-              <div className="card border border-2 position-relative h-100 py-2 shadow-sm">
+              <div className="card bg-light border border-2 position-relative h-100 py-2 shadow-sm">
                 <button
                   type="button"
-                  className="delete-checkbox btn-clean position-absolute"
+                  className="delete-checkbox btn-clean position-absolute text-primary"
                   onClick={() => handleProductDeleteBox(product)}
                 >
                   {productsToBeDeleted.includes(product.product_id) ? (
@@ -98,20 +101,26 @@ export default function Products({ setAlert }) {
                     <CheckBoxOutlineBlankIcon />
                   )}
                 </button>
-                <p>{product.sku}</p>
-                <p className="fs-6 mb-0">{product.name}</p>
-                <p>${product.price}</p>
+                <p className="text-info">{product.sku}</p>
+                <p className="fs-6 mb-0 fw-bold">{product.name}</p>
                 <ul>
                   {productsWithoutCommonFields &&
                     Object.keys(productsWithoutCommonFields[idx]).map(
                       (field) => (
                         <div key={field}>
-                          <span>{utils.capitalizeInitial(field)}: </span>
-                          <span>{productsWithoutCommonFields[idx][field]}</span>
+                          <span className="text-secondary">
+                            {utils.capitalizeInitial(field)}:{' '}
+                          </span>
+                          <span className="text-secondary">
+                            {productsWithoutCommonFields[idx][field]}
+                          </span>
                         </div>
                       )
                     )}
                 </ul>
+                <p className="text-end pe-2 text-primary fw-bold">
+                  ${product.price}
+                </p>
               </div>
             </div>
           ))}

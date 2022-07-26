@@ -14,7 +14,7 @@ function App() {
   const handleAlertClose = () => setAlert(undefined);
 
   return (
-    <div className="App px-2 px-md-5 pt-2 mt-2">
+    <div className="App px-2 px-md-5 py-2 mt-2">
       {alert && (
         <Alert
           className="mb-2"
