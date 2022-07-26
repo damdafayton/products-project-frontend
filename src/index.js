@@ -8,9 +8,11 @@ import reportWebVitals from './reportWebVitals';
 import './bootstrap';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const basename = process.env.NODE_ENV === 'production' ? '/build' : '/';
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
