@@ -74,11 +74,11 @@ export default function Products({ setAlert }) {
         <div className="d-flex gap-2 w-100 justify-content-end py-2">
           <Link to="/new_product">
             <Button variant="outlined" className="h-100">
-              Add
+              ADD
             </Button>
           </Link>
           <Button onClick={handleDeleteButton} variant="outlined">
-            Mass Delete
+            MASS DELETE
           </Button>
         </div>
       </header>

@@ -10,7 +10,7 @@ import './bootstrap';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const basename =
   process.env.NODE_ENV === 'production'
-    ? '/products-project-frontend/build'
+    ? process.env.REACT_APP_ROUTER_PATH
     : '/';
 
 root.render(
