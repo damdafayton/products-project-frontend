@@ -1,9 +1,10 @@
+const proxy = 'https://safe-ridge-22036.herokuapp.com';
 export const remoteBase = 'https://products-listing-demo.herokuapp.com';
 export const localBase = 'http://localhost/test-scandiweb-products';
 
 const base =
   process.env.NODE_ENV === 'production'
-    ? `${remoteBase}/index.php/api`
+    ? `${proxy}/${remoteBase}/index.php/api`
     : '/api';
 
 export default {
