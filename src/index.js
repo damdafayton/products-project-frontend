@@ -8,7 +8,10 @@ import reportWebVitals from './reportWebVitals';
 import './bootstrap';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const basename = process.env.NODE_ENV === 'production' ? '/build' : '/';
+const basename =
+  process.env.NODE_ENV === 'production'
+    ? '/products-project-frontend/build'
+    : '/';
 
 root.render(
   <React.StrictMode>
