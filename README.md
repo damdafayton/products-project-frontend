@@ -2,6 +2,8 @@
 
 ![screen-shot](./products_demo.gif)
 
+Back-end repo: https://github.com/damdafayton/products-project-backend
+
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Built With
