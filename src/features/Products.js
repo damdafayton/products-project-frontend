@@ -86,7 +86,7 @@ export default function Products({ setAlert }) {
         </div>
       </header>
       <main className="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 gx-2 py-2">
-        {products &&
+        {products ? (
           products.map((product, idx) => (
             <div className="px-1 py-1" key={product.product_id}>
               <div className="card bg-light border border-2 position-relative h-100 py-2 shadow-sm">
@@ -123,7 +123,13 @@ export default function Products({ setAlert }) {
                 </p>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="py-3 w-100">
+            Data for this app is served from free Heroku servers and loading can
+            take 20 to 40 seconds. Please wait..
+          </div>
+        )}
       </main>
     </>
   );
