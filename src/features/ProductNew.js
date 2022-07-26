@@ -43,7 +43,6 @@ export default function ProductNew({ setAlert }) {
       fetch(apiRoutes.PRODUCT_FIELDS_QUERY(category))
         .then((res) => res.json())
         .then((res) => {
-          // console.log(res);
           const { categoryFields } = res;
           // eslint-disable-next-line no-underscore-dangle
           const _categoryFields = categoryFields.map((fieldGroup) => [
@@ -113,13 +112,11 @@ export default function ProductNew({ setAlert }) {
             message: `Product with id: ${res.product_id} is created.`,
           });
           navigate('/');
-          // console.log(res);
         }
       });
   };
 
   const handleCategoryChange = (e) => {
-    console.log(e.target);
     setCategory(e.target && e.target.value);
   };
 
@@ -127,12 +124,11 @@ export default function ProductNew({ setAlert }) {
     <>
       <form id="#product_form" onSubmit={formSubmitHandler}>
         <header className="d-flex justify-content-between flex-column flex-sm-row border-2 border-bottom border-dark py-2">
-          <h2 className="text-dark text-center text-sm-start w-100 mb-2 flex-grow-0">
+          <h2 className="text-dark text-center text-sm-start w-100 my-1 flex-grow-0">
             PRODUCT ADD
           </h2>
-          <div className="d-flex gap-2 w-100 justify-content-end">
+          <div className="d-flex gap-2 w-100 justify-content-end py-2">
             <Button variant="outlined" type="submit">
-              {/* <Link to="/new_product">Add</Link> */}
               Save
             </Button>
             <Button variant="outlined" onClick={() => navigate(-1)}>
