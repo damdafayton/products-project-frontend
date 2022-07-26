@@ -8,14 +8,14 @@ import reportWebVitals from './reportWebVitals';
 import './bootstrap';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const basename =
-  process.env.NODE_ENV === 'production'
-    ? process.env.REACT_APP_ROUTER_PATH
-    : '/';
+// const basename =
+//   process.env.NODE_ENV === 'production'
+//     ? process.env.REACT_APP_BASNAME_PATH
+//     : '/';
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={basename}>
+    <BrowserRouter basename={process.env.REACT_APP_BASENAME_PATH}>
       <App />
     </BrowserRouter>
   </React.StrictMode>

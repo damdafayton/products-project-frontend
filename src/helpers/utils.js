@@ -19,7 +19,7 @@ const replaceLastCommaWithAnd = (string) => {
     const newString = `${string.substring(0, lastComma)} and${string.substring(
       lastComma + 1
     )}`;
-    console.log(newString);
+    // console.log(newString);
     return newString;
   }
   return string;

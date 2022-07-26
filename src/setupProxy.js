@@ -1,12 +1,12 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-import { localBase } from './apiRoutes';
+const LOCAL_BASE = 'http://localhost/test-scandiweb-products';
 
 module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: `${localBase}/index.php`,
+      target: `${LOCAL_BASE}/index.php`,
       changeOrigin: true,
     })
   );
