@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "https://damdafayton.github.io/products-project-frontend/static/css/main.037e747f.css",
-    "main.js": "https://damdafayton.github.io/products-project-frontend/static/js/main.18ca65c9.js",
+    "main.css": "https://damdafayton.github.io/products-project-frontend/static/css/main.c2aea5f1.css",
+    "main.js": "https://damdafayton.github.io/products-project-frontend/static/js/main.a10857b1.js",
     "static/js/787.a5762e1d.chunk.js": "https://damdafayton.github.io/products-project-frontend/static/js/787.a5762e1d.chunk.js",
     "index.html": "https://damdafayton.github.io/products-project-frontend/index.html",
-    "main.037e747f.css.map": "https://damdafayton.github.io/products-project-frontend/static/css/main.037e747f.css.map",
-    "main.18ca65c9.js.map": "https://damdafayton.github.io/products-project-frontend/static/js/main.18ca65c9.js.map",
+    "main.c2aea5f1.css.map": "https://damdafayton.github.io/products-project-frontend/static/css/main.c2aea5f1.css.map",
+    "main.a10857b1.js.map": "https://damdafayton.github.io/products-project-frontend/static/js/main.a10857b1.js.map",
     "787.a5762e1d.chunk.js.map": "https://damdafayton.github.io/products-project-frontend/static/js/787.a5762e1d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.037e747f.css",
-    "static/js/main.18ca65c9.js"
+    "static/css/main.c2aea5f1.css",
+    "static/js/main.a10857b1.js"
   ]
 }
