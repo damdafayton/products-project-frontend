@@ -6,25 +6,20 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { Link } from 'react-router-dom';
 
 import apiRoutes from '../apiRoutes';
-import { utils, product } from '../helpers';
+import { utils } from '../helpers';
 
 export default function Products({ setAlert }) {
   const [products, setProducts] = useState(undefined);
-  const [privateFieldsOfProducts, setPrivateFieldsOfProducts] =
-    useState(undefined);
   const [productsToBeDeleted, setProductsToBeDeleted] = useState([]);
 
   const getProducts = () =>
     fetch(apiRoutes.PRODUCTS)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
-        setProducts(res);
-        // eslint-disable-next-line no-underscore-dangle
-        const _privateFieldsOfProducts = res.map((data) =>
-          product.removeCommonFields(data.product)
-        );
-        setPrivateFieldsOfProducts(_privateFieldsOfProducts);
+        // console.log(res);
+        if (res && res.length > 0) {
+          setProducts(res);
+        }
       });
 
   useEffect(() => {
@@ -87,9 +82,9 @@ export default function Products({ setAlert }) {
       </header>
       <main className="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 gx-2 py-2">
         {products ? (
-          products.map((data, idx) => (
+          products.map((data) => (
             <div className="px-1 py-1" key={data.product.product_id}>
-              <div className="card bg-light border border-2 position-relative h-100 py-2 shadow-sm">
+              <div className="card bg-light border border-2 position-relative h-100 py-2 shadow-sm d-flex justify-content-between">
                 <button
                   type="button"
                   className="delete-checkbox btn-clean position-absolute text-primary"
@@ -101,26 +96,25 @@ export default function Products({ setAlert }) {
                     <CheckBoxOutlineBlankIcon />
                   )}
                 </button>
-                <p className="text-info">{data.product.sku}</p>
-                <p className="fs-6 mb-0 fw-bold">{data.product.name}</p>
-                <ul>
-                  {privateFieldsOfProducts &&
-                    Object.keys(privateFieldsOfProducts[idx]).map(
-                      (field, index) => (
+                <div>
+                  <p className="text-info">{data.product.sku}</p>
+                  <p className="fs-6 mb-0 fw-bold">{data.product.name}</p>
+                  <ul>
+                    {data.productSpecialFields &&
+                      Object.keys(data.productSpecialFields).map((field) => (
                         <div key={field}>
                           <span className="text-secondary">
                             {utils.capitalizeInitial(field)}:{' '}
                           </span>
+                          {/* {data.productSpecialFields[field] && (
+                          <> */}
                           <span className="text-secondary">
-                            {privateFieldsOfProducts[idx][field]}
-                          </span>
-                          <span className="text-secondary">
-                            &nbsp;{data.categoryFields[index][1]}
+                            {data.productSpecialFields[field]}
                           </span>
                         </div>
-                      )
-                    )}
-                </ul>
+                      ))}
+                  </ul>
+                </div>
                 <p className="text-end pe-2 text-primary fw-bold">
                   ${data.product.price}
                 </p>
