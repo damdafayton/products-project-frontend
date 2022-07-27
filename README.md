@@ -1,6 +1,8 @@
 # Products Listing APP
 
-![screen-shot](./products_demo.gif)
+![screen-shot](./ss1.png)
+
+![screen-shot2](./ss2.png)
 
 Back-end repo: https://github.com/damdafayton/products-project-backend
 

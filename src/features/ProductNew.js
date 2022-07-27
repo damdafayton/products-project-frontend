@@ -167,7 +167,11 @@ export default function ProductNew({ setAlert }) {
             )}
             {categoryFields.length > 0 && (
               <>
-                <Alert severity="warning" icon={false} className="mb-2">
+                <Alert
+                  severity="warning"
+                  icon={false}
+                  className="mb-2 bg-secondary text-white"
+                >
                   Please provide:{' '}
                   {utils.replaceLastCommaWithAnd(
                     categoryFields
