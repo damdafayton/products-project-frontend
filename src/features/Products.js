@@ -10,7 +10,7 @@ import { utils, product } from '../helpers';
 
 export default function Products({ setAlert }) {
   const [products, setProducts] = useState(undefined);
-  const [productsWithoutCommonFields, setProductsWithoutCommonFields] =
+  const [privateFieldsOfProducts, setPrivateFieldsOfProducts] =
     useState(undefined);
   const [productsToBeDeleted, setProductsToBeDeleted] = useState([]);
 
@@ -18,13 +18,13 @@ export default function Products({ setAlert }) {
     fetch(apiRoutes.PRODUCTS)
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         setProducts(res);
         // eslint-disable-next-line no-underscore-dangle
-        const _productsWithoutCommonFields = res.map((_product) =>
-          product.removeCommonFields(_product)
+        const _privateFieldsOfProducts = res.map((data) =>
+          product.removeCommonFields(data.product)
         );
-        setProductsWithoutCommonFields(_productsWithoutCommonFields);
+        setPrivateFieldsOfProducts(_privateFieldsOfProducts);
       });
 
   useEffect(() => {
@@ -87,39 +87,42 @@ export default function Products({ setAlert }) {
       </header>
       <main className="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 gx-2 py-2">
         {products ? (
-          products.map((product, idx) => (
-            <div className="px-1 py-1" key={product.product_id}>
+          products.map((data, idx) => (
+            <div className="px-1 py-1" key={data.product.product_id}>
               <div className="card bg-light border border-2 position-relative h-100 py-2 shadow-sm">
                 <button
                   type="button"
                   className="delete-checkbox btn-clean position-absolute text-primary"
-                  onClick={() => handleProductDeleteBox(product)}
+                  onClick={() => handleProductDeleteBox(data.product)}
                 >
-                  {productsToBeDeleted.includes(product.product_id) ? (
+                  {productsToBeDeleted.includes(data.product.product_id) ? (
                     <CheckBoxIcon />
                   ) : (
                     <CheckBoxOutlineBlankIcon />
                   )}
                 </button>
-                <p className="text-info">{product.sku}</p>
-                <p className="fs-6 mb-0 fw-bold">{product.name}</p>
+                <p className="text-info">{data.product.sku}</p>
+                <p className="fs-6 mb-0 fw-bold">{data.product.name}</p>
                 <ul>
-                  {productsWithoutCommonFields &&
-                    Object.keys(productsWithoutCommonFields[idx]).map(
-                      (field) => (
+                  {privateFieldsOfProducts &&
+                    Object.keys(privateFieldsOfProducts[idx]).map(
+                      (field, index) => (
                         <div key={field}>
                           <span className="text-secondary">
                             {utils.capitalizeInitial(field)}:{' '}
                           </span>
                           <span className="text-secondary">
-                            {productsWithoutCommonFields[idx][field]}
+                            {privateFieldsOfProducts[idx][field]}
+                          </span>
+                          <span className="text-secondary">
+                            &nbsp;{data.categoryFields[index][1]}
                           </span>
                         </div>
                       )
                     )}
                 </ul>
                 <p className="text-end pe-2 text-primary fw-bold">
-                  ${product.price}
+                  ${data.product.price}
                 </p>
               </div>
             </div>
