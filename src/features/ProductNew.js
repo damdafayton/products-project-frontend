@@ -45,9 +45,9 @@ export default function ProductNew({ setAlert }) {
         .then((res) => {
           const { categoryFields } = res;
           // eslint-disable-next-line no-underscore-dangle
-          const _categoryFields = categoryFields.map((fieldGroup) => [
-            utils.capitalizeAcronyms(fieldGroup[0]),
-            fieldGroup[1].toUpperCase(),
+          const _categoryFields = Object.keys(categoryFields).map((field) => [
+            utils.capitalizeAcronyms(field),
+            categoryFields[field].toUpperCase(),
           ]);
           setCategoryFields(_categoryFields);
         });
