@@ -16,7 +16,6 @@ export default function Products({ setAlert }) {
     fetch(apiRoutes.PRODUCTS)
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
         if (res && res.length > 0) {
           setProducts(res);
         }
@@ -56,7 +55,6 @@ export default function Products({ setAlert }) {
         } else {
           setAlert({ status: 'error', message: "Items haven't deleted." });
         }
-        // console.log(res);
       });
   };
 

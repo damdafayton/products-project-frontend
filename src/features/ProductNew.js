@@ -27,7 +27,6 @@ export default function ProductNew({ setAlert }) {
       .then((res) => res.json())
       .then((res) => {
         const { commonFields, categoryList } = res;
-        // console.log(commonFields);
         // eslint-disable-next-line no-underscore-dangle
         const _commonFields = commonFields.map((word) =>
           utils.capitalizeAcronyms(word)

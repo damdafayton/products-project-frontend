@@ -1,7 +1,5 @@
 const validateFormData = (body, fields) => {
   const missingFields = [];
-  // console.log(fields);
-  // console.log(body);
 
   fields.forEach(
     (field) =>
@@ -14,13 +12,11 @@ const validateFormData = (body, fields) => {
 
 const validateFormDataType = (body, fields) => {
   const fieldsSupposedToBeNumeric = [];
-  // console.log(body);
   fields.forEach(
     (field) =>
       parseInt(body[field.toLowerCase()], 10).toString() === 'NaN' &&
       fieldsSupposedToBeNumeric.push(field)
   );
-  // console.log(fieldsSupposedToBeNumeric);
   return fieldsSupposedToBeNumeric;
 };
 

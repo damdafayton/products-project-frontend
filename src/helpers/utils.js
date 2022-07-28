@@ -19,7 +19,6 @@ const replaceLastCommaWithAnd = (string) => {
     const newString = `${string.substring(0, lastComma)} and${string.substring(
       lastComma + 1
     )}`;
-    // console.log(newString);
     return newString;
   }
   return string;
@@ -27,7 +26,6 @@ const replaceLastCommaWithAnd = (string) => {
 
 const sterilizeMySQLErrorMessages = (_string) => {
   const indexOfColumnString = _string.search(' for column');
-  // console.log(string);
   if (indexOfColumnString > 0) {
     return `${_string.substring(0, indexOfColumnString)}.`;
   }
