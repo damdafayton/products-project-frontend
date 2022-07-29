@@ -96,23 +96,22 @@ export default function ProductNew({ setAlert }) {
 
     fetch(apiRoutes.PRODUCTS, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      // Disable due to cors-preflight
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
       body: JSON.stringify(body),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.error) {
-          setAlert({ status: 'error', message: res.error });
-        } else if (res.product_id) {
-          setAlert({
-            status: 'success',
-            message: `Product with id: ${res.product_id} is created.`,
-          });
-          navigate('/');
-        }
-      });
+    }).then((res) => {
+      if (res.status === 201) {
+        setAlert({
+          status: 'success',
+          message: `Product is added.`,
+        });
+        navigate('/');
+      } else {
+        setAlert({ status: 'error', message: "Product couldn't be added." });
+      }
+    });
   };
 
   const handleCategoryChange = (e) => {

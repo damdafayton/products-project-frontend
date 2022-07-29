@@ -22,6 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+workspace-scandiweb-products.code-workspace
 bat-vscode.bat
 webpack.config.js.lnk
 .package.json

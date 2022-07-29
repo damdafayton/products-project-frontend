@@ -41,21 +41,19 @@ export default function Products({ setAlert }) {
     // console.log(productsToBeDeleted, body);
     fetch(apiRoutes.MASS_DELETE, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      // Disable due to cors-preflight
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
       body,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        const affectedRows = res && res.affected_rows;
-        if (affectedRows > 0) {
-          setAlert({ status: 'success', message: 'Items deleted.' });
-          getProducts();
-        } else {
-          setAlert({ status: 'error', message: "Items haven't deleted." });
-        }
-      });
+    }).then((res) => {
+      if (res.status === 202) {
+        setAlert({ status: 'success', message: 'Items deleted.' });
+        getProducts();
+      } else {
+        setAlert({ status: 'error', message: "Items haven't deleted." });
+      }
+    });
   };
 
   return (
