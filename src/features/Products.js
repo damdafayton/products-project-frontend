@@ -48,10 +48,16 @@ export default function Products({ setAlert }) {
       body,
     }).then((res) => {
       if (res.status === 202) {
-        setAlert({ status: 'success', message: 'Items deleted.' });
+        setAlert({
+          status: 'success',
+          message: `${productsToBeDeleted.length} product(s) deleted.`,
+        });
         getProducts();
       } else {
-        setAlert({ status: 'error', message: "Items haven't deleted." });
+        setAlert({
+          status: 'error',
+          message: 'Product delete failed.',
+        });
       }
     });
   };
